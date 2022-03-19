@@ -16,7 +16,7 @@ class FullscreenTriangleState: public our::State {
     
     our::ShaderProgram program;
     //TODO: Add a variable in which we will store the name (ID) for a vertex array
-
+    GLuint VAO;
     // onInitialize() function is called once before the state starts
     void onInitialize() override {
         
@@ -55,6 +55,8 @@ class FullscreenTriangleState: public our::State {
 
         //TODO: Create a vertex Array
 
+        glGenVertexArrays(1, &VAO);
+        glBindVertexArray(VAO);
         // We set the clear color to be black
         glClearColor(0.0, 0.0, 0.0, 1.0);
     }
@@ -65,11 +67,37 @@ class FullscreenTriangleState: public our::State {
         glClear(GL_COLOR_BUFFER_BIT);
 
         //TODO: Draw a triangle using the vertex array and the program
-
+        nlohmann::json app_config = getApp()->getConfig();
+        if(app_config["window"]["title"]=="Line")
+        {
+            program.set("slope",(GLfloat)app_config["scene"]["uniforms"]["slope"]["value"]);
+            program.set("intercept",(GLfloat)app_config["scene"]["uniforms"]["intercept"]["value"]);
+            glDrawArrays(GL_TRIANGLES, 0, 3);
+        }
+        else if(app_config["window"]["title"]=="Square")
+        {
+            program.set("center",(glm::vec2)app_config["scene"]["uniforms"]["center"]["value"]);
+            program.set("side_length",(GLfloat)app_config["scene"]["uniforms"]["side_length"]["value"]);
+            glDrawArrays(GL_TRIANGLES, 0, 4);
+        }
+        else if(app_config["window"]["title"]=="Diamond")
+        {
+            program.set("center",(glm::vec2)app_config["scene"]["uniforms"]["center"]["value"]);
+            program.set("side_length",(GLfloat)app_config["scene"]["uniforms"]["side_length"]["value"]);
+            glDrawArrays(GL_TRIANGLES, 0, 4);
+        }
+        else if(app_config["window"]["title"]=="Circle")
+        {
+            program.set("center",(glm::vec2)app_config["scene"]["uniforms"]["center"]["value"]);
+            program.set("radius",(GLfloat)app_config["scene"]["uniforms"]["radius"]["value"]);
+            glDrawArrays(GL_TRIANGLES, 0, 4);
+        }
+        
     }
 
     // onInitialize() function is called once after the state ends
     void onDestroy() override {
         //TODO: Delete the vertex Array
+        glDeleteVertexArrays(1, &VAO);
     }
 };
