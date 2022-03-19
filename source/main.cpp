@@ -14,7 +14,11 @@ int main(int argc, char **argv)
     flags::args args(argc, argv); // Parse the command line arguments
     // config_path is the path to the json file containing the application configuration
     // Default: "config/app.json"
+<<<<<<< HEAD
     std::string config_path = args.get<std::string>("c", "config/circle02.json");
+=======
+    std::string config_path = args.get<std::string>("c", "config/blue-screen.json");
+>>>>>>> 7c497f6e941813339eb749a8153d3fbaab883e65
     // run_for_frames is how many frames to run the application before automatically closing
     // This is useful for testing multiple configurations in a batch
     // Default: 0 where the application runs indefinitely until manually closed
