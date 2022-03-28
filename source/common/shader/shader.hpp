@@ -29,6 +29,7 @@ namespace our {
 
         void use() { 
             //TODO: call opengl to use the program identified by this->program
+            // Specifies the handle of the program object whose executables are to be used as part of current rendering state
             glUseProgram(program);
         }
 
@@ -36,6 +37,7 @@ namespace our {
             //TODO: call opengl to get the uniform location for the uniform defined by name from this->program
             
             const GLchar *cstr = name.c_str();
+            // returns an integer that represents the location of a specific uniform variable within a program object
             GLint Loc = glGetUniformLocation(program,cstr);
             return Loc;
         }
@@ -65,7 +67,8 @@ namespace our {
         ShaderProgram (const ShaderProgram&) = delete;
         ShaderProgram& operator= (const ShaderProgram&) = delete;
         //Question: Why do we do this? Hint: Look at the deconstructor
-        // Answer: 
+        // Answer: In general to avoid undesirable generation of copy constructor and
+        //         here to avoid accidental deletion of the program if a copy is made (if for example passed by value to a function)
     };
 
 }

@@ -34,7 +34,9 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
     GLuint shaderID = glCreateShader(type);
 
     //TODO: send the source code to the shader and compile it
+    // sets the source code in shader to the source code in the array of strings specified by string
     glShaderSource(shaderID, 1, &sourceCStr, nullptr);
+    // compiles the source code strings that have been stored in the shader object specified by shader.
     glCompileShader(shaderID);
     // Here we check for compilation errors
     //TODO: Uncomment this if block
@@ -47,6 +49,7 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
 
     
     //TODO: attach the shader to the program then delete the shader
+    // In order to create a complete shader program, there must be a way to specify the list of things that will be linked together.
     glAttachShader(program, shaderID);
     glDeleteShader(shaderID);
     //We return true since the compilation succeeded
@@ -57,6 +60,7 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
 
 bool our::ShaderProgram::link() const {
     //TODO: call opengl to link the program identified by this->program 
+    // links the program object specified by program
     glLinkProgram(program);
     // Here we check for linking errors
     //TODO: Uncomment this if block
