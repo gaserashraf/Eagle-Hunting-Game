@@ -1,5 +1,5 @@
 # CMP3060 Project - Phase 1
-
+  In this phase we managed to draw four different shapes two times one with a color and the second time with another color
 ## Included Libraries
 
 - [glfw 3.3](https://github.com/glfw/glfw)
