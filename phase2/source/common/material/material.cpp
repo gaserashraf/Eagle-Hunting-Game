@@ -45,10 +45,9 @@ namespace our {
         //TODO: (Req 6) Write this function
         TintedMaterial::setup();
         shader->set("alphaThreshold",alphaThreshold);
-        // glActiveTexture(GL_TEXTURE0);
         texture->bind();
-        sampler->bind(GL_TEXTURE0);
-        shader->set("tex",GL_TEXTURE0);
+        sampler->bind(0);
+        shader->set("tex",0);
     }
 
     // This function read the material data from a json object
