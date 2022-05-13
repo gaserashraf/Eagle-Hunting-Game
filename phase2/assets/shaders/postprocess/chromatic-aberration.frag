@@ -7,6 +7,7 @@ uniform sampler2D tex;
 in vec2 tex_coord;
 out vec4 frag_color;
 
+
 // How far (in the texture space) is the distance (on the x-axis) between
 // the pixels from which the red/green (or green/blue) channels are sampled
 #define STRENGTH 0.005
@@ -20,5 +21,8 @@ void main(){
     // To apply this effect, we only read the green channel from the correct pixel (as defined by tex_coord)
     // To get the red channel, we move by amount STRENGTH to the left then sample another pixel from which we take the red channel
     // To get the blue channel, we move by amount STRENGTH to the right then sample another pixel from which we take the blue channel
-    frag_color = vec4(0.0, 0.0, 0.0, 1.0);
+    vec2 tex_coordleft = tex_coord - vec2(STRENGTH,0);
+    vec2 tex_coordright = tex_coord + vec2(STRENGTH,0);
+    frag_color = vec4(texture(tex, tex_coordleft).r,texture(tex, tex_coord).g,texture(tex, tex_coordright).b,1);
+    
 }
