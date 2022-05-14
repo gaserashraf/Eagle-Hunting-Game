@@ -44,10 +44,10 @@ namespace our {
     void TexturedMaterial::setup() const {
         //TODO: (Req 6) Write this function
         TintedMaterial::setup();
-        shader->set("alphaThreshold",alphaThreshold);
-        texture->bind();
-        sampler->bind(0);
-        shader->set("tex",0);
+        shader->set("alphaThreshold",alphaThreshold); // set the alphaThreshold value to the shader
+        texture->bind(); // bind the texture 
+        sampler->bind(0);// bind the sampler to unit #0
+        shader->set("tex",0); //set the unit to be 0
     }
 
     // This function read the material data from a json object

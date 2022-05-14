@@ -21,6 +21,8 @@ namespace our {
 
         // } 
         // return localtoworld;
+
+        // sample recursion funtion to make the multipy in this order : par(n)......par2*par1*local
         if(parent)
             return parent->getLocalToWorldMatrix() * this->localTransform.toMat4();
 
