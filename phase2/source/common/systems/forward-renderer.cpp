@@ -155,6 +155,7 @@ namespace our {
         // If there is no camera, we return (we cannot render without a camera)
         if(camera == nullptr) return;
 
+        // a
         //TODO: (Req 8) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
         glm::vec3 cameraForward = camera->getViewMatrix()[0];
