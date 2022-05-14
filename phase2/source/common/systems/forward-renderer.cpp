@@ -166,16 +166,16 @@ namespace our {
         });
 
         //TODO: (Req 8) Get the camera ViewProjection matrix and store it in VP
-        glm::mat4 VP =camera->getProjectionMatrix(windowSize)*camera->getViewMatrix();
+        glm::mat4 VP =camera->getProjectionMatrix(windowSize)*camera->getViewMatrix(); // projection * view
         //TODO: (Req 8) Set the OpenGL viewport using windowSize
-        glViewport(0,0,windowSize[0],windowSize[1]);
+        glViewport(0,0,windowSize[0],windowSize[1]); //  glViewport(0, 0, W/2, H/2);
 
         //TODO: (Req 8) Set the clear color to black and the clear depth to 1
-        glClearColor(0.0f,0.0f,0.0f,0.0f);
-        glClearDepth(1.0);
+        glClearColor(0.0f,0.0f,0.0f,0.0f); // clear the screen with a color of your choice.
+        glClearDepth(1.0);  // set depth clear value (background = far plane). 
         //TODO: (Req 8) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
-        glColorMask(true,true,true,true);
-        glDepthMask(true);
+        glColorMask(true,true,true,true); // enable/disable writing colors in the frame buffer. (e.g. if cause red to stay red in all frames)
+        glDepthMask(true);  // enables/disables writing on the depth buffer (enabled here.)
 
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
@@ -190,8 +190,8 @@ namespace our {
         for(auto comm:opaqueCommands)
         {
             comm.material->setup();
-            ShaderProgram * shaderComm = comm.material->shader;
-            shaderComm->set("transform",VP*comm.localToWorld);
+            ShaderProgram * shaderComm = comm.material->shader; // get the shader from current command
+            shaderComm->set("transform",VP*comm.localToWorld); // set the transform matrix 
             comm.mesh->draw();
         }
         // If there is a sky material, draw the sky
@@ -233,8 +233,8 @@ namespace our {
         for(auto comm:transparentCommands)
         {
             comm.material->setup();
-            ShaderProgram * shaderComm = comm.material->shader;
-            shaderComm->set("transform",VP*comm.localToWorld);
+            ShaderProgram * shaderComm = comm.material->shader;// get the shader from current command
+            shaderComm->set("transform",VP*comm.localToWorld);// set the transform matrix 
             comm.mesh->draw();
         }
 
