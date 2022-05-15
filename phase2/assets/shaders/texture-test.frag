@@ -12,7 +12,8 @@ out vec4 frag_color;
 uniform sampler2D tex;
 
 void main(){
-    //TODO: (Req 4) Change the following line to read the fragment color
+    // TODO: (Req 4) Change the following line to read the fragment color
     // from the texture at the received texture coordinates
+    // drawing the texture using input from the vertex shader . 
     frag_color = texture(tex, fs_in.tex_coord);
 }

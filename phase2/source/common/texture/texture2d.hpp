@@ -13,6 +13,7 @@ namespace our {
         Texture2D() {
             //TODO: (Req 4) Complete this function
             glGenTextures(1,&name);
+            // Generating the texture in constructor ; 
             
         };
 
@@ -20,6 +21,7 @@ namespace our {
         ~Texture2D() { 
             //TODO: (Req 4) Complete this function
             glDeleteTextures(1,&name);
+            // delete the texture in the destructor 
 
         }
 
@@ -31,8 +33,8 @@ namespace our {
         // This method binds this texture to GL_TEXTURE_2D
         void bind() const {
             //TODO: (Req 4) Complete this function
-            // glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D,name);
+            // Bind the texture ; 
 
         }
 
@@ -40,6 +42,7 @@ namespace our {
         static void unbind(){
             //TODO: (Req 4) Complete this function
             glBindTexture(GL_TEXTURE_2D,0);
+            // unbind it by passing 0 to the function 
         }
 
         Texture2D(const Texture2D&) = delete;
