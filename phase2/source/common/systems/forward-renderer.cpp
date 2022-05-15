@@ -64,15 +64,20 @@ namespace our {
             int RT_W = windowSize[0];
             int RT_H = windowSize[1];
             colorTarget = new our::Texture2D();
+            // creating new Texture ; 
             GLuint colorRT = colorTarget->getOpenGLName();
+            // get the name of the texture ; 
             colorTarget->bind();
+            // bind the texture ; 
             int levels = (int)glm::floor(glm::log2((float)glm::max(RT_W, RT_H))) + 1;
+            //Compute the no. of miplevels and pass it to glTexStorage2D:
             glTexStorage2D(GL_TEXTURE_2D, levels, GL_RGBA8, RT_W, RT_H);
             
             depthTarget = new our::Texture2D();
             GLuint depthRT = depthTarget->getOpenGLName();
             depthTarget->bind();
             glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT32, RT_W, RT_H);
+            // same as above for the depth but instead pass 1 for the levels 
 
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorRT, 0);
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthRT, 0);
@@ -84,21 +89,30 @@ namespace our {
             // Create a sampler to use for sampling the scene texture in the post processing shader
             Sampler* postprocessSampler = new Sampler();
             postprocessSampler->set(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            // Smooth things out by using a different minification parameter (GL_NEAREST_MIPMAP_LINEAR)
             postprocessSampler->set(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             postprocessSampler->set(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             postprocessSampler->set(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
             // Create the post processing shader
             ShaderProgram* postprocessShader = new ShaderProgram();
+            // create the new shader for the vertex shader 
             postprocessShader->attach("assets/shaders/fullscreen.vert", GL_VERTEX_SHADER);
+            // attach it . 
             postprocessShader->attach(config.value<std::string>("postprocess", ""), GL_FRAGMENT_SHADER);
+            // attach fragment shader 
             postprocessShader->link();
+            // link shaders to the programs .
 
             // Create a post processing material
             postprocessMaterial = new TexturedMaterial();
+
             postprocessMaterial->shader = postprocessShader;
+            // assign the sahder 
             postprocessMaterial->texture = colorTarget;
+            // assign the target color 
             postprocessMaterial->sampler = postprocessSampler;
+            // assign the sampler of the texutre 
             // The default options are fine but we don't need to interact with the depth buffer
             // so it is more performant to disable the depth mask
             postprocessMaterial->pipelineState.depthMask = false;

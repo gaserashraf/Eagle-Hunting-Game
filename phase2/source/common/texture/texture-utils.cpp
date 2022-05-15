@@ -8,6 +8,7 @@
 our::Texture2D* our::texture_utils::empty(GLenum format, glm::ivec2 size){
     our::Texture2D* texture = new our::Texture2D();
     //TODO: (Req 10) Finish this function to create an empty texture with the given size and format
+    // Well-known block of code. 
     int RT_W = size[0];
     int RT_H = size[1];
     GLuint tex = texture->getOpenGLName();
@@ -64,7 +65,7 @@ our::Texture2D* our::texture_utils::loadImage(const std::string& filename, bool 
     // Must have different mipmaps for the texture (e.g. 8x8 -> 8x8, 4x4, 2x2, 1x1 by successive 2x2 averaging)
     // glGenerateMipMap starts with the base level (we passed above as 0: default 8x8) and uses it
     // to generate mipmaps that OpenGL will need.
-    
+
     stbi_image_free(pixels); //Free image data after uploading to GPU
     return texture;
 }
