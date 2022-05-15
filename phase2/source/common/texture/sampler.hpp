@@ -15,6 +15,7 @@ namespace our {
         Sampler() {
             //TODO: (Req 5) Complete this function
             glGenSamplers(1,&name);
+            // generating the sampler 
             
         };
 
@@ -22,18 +23,21 @@ namespace our {
         ~Sampler() { 
             //TODO: (Req 5) Complete this function
             glDeleteSamplers(1,&name);
+            // deleting the sampler 
          }
 
         // This method binds this sampler to the given texture unit
         void bind(GLuint textureUnit) const {
             //TODO: (Req 5) Complete this function
             glBindSampler(textureUnit,name);
+            // bind the sampler 
         }
 
         // This static method ensures that no sampler is bound to the given texture unit
         static void unbind(GLuint textureUnit){
             //TODO: (Req 5) Complete this function
             glBindSampler(textureUnit,0);
+            // unbind the sampler 
         }
 
         // This function sets a sampler paramter where the value is of type "GLint"
@@ -41,6 +45,7 @@ namespace our {
         void set(GLenum parameter, GLint value) const {
             //TODO: (Req 5) Complete this function
             glSamplerParameteri(name,parameter,value);
+            
         }
 
         // This function sets a sampler paramter where the value is of type "GLfloat"
