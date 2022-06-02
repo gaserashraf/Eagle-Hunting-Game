@@ -1,0 +1,238 @@
+{
+  "start-scene": "main",
+  "window": {
+    "title": "Default Game Window",
+    "size": {
+      "width": 1280,
+      "height": 720
+    },
+    "fullscreen": false
+  },
+  "scene": {
+    "renderer": {
+      "sky": "assets/textures/sky.jpg",
+      "postprocess": "assets/shaders/postprocess/vignette.frag"
+    },
+    "assets": {
+      "shaders": {
+        "tinted": {
+          "vs": "assets/shaders/tinted.vert",
+          "fs": "assets/shaders/tinted.frag"
+        },
+        "textured": {
+          "vs": "assets/shaders/textured.vert",
+          "fs": "assets/shaders/textured.frag"
+        }
+      },
+      "textures": {
+        "moon": "assets/textures/moon.jpg",
+        "grass": "assets/textures/sand2.jpg",
+        "wood": "assets/textures/wood.jpg",
+        "duck": "assets/textures/eagle.jpg",
+        "gun": "assets/textures/gun3.jpg",
+        "water": "assets/textures/water.jpg"
+      },
+      "meshes": {
+        "gun": "assets/models/gun.obj",
+        "duck": "assets/models/eagle.obj",
+        "plane": "assets/models/plane.obj",
+        "sphere": "assets/models/sphere.obj",
+        "water": "assets/models/plane.obj"
+      },
+      "samplers": {
+        "default": {},
+        "pixelated": {
+          "MAG_FILTER": "GL_NEAREST"
+        }
+      },
+      "materials": {
+        "metal": {
+          "type": "tinted",
+          "shader": "tinted",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [0.45, 0.4, 0.5, 1]
+        },
+        "grass": {
+          "type": "textured",
+          "shader": "textured",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "texture": "grass",
+          "sampler": "default"
+        },
+        "water": {
+          "type": "textured",
+          "shader": "textured",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "texture": "water",
+          "sampler": "default"
+        },
+        "duck": {
+          "type": "textured",
+          "shader": "textured",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "texture": "duck",
+          "sampler": "default"
+        },
+        "gun": {
+          "type": "textured",
+          "shader": "textured",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "texture": "gun",
+          "sampler": "default"
+        },
+        "moon": {
+          "type": "textured",
+          "shader": "textured",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "texture": "moon",
+          "sampler": "default"
+        }
+      }
+    },
+    "world": [
+      {
+        "position": [0, 0, 10],
+        "components": [
+          {
+            "type": "Camera"
+          },
+          {
+            "type": "Free Camera Controller"
+          }
+        ],
+        "children": [
+          {
+            "position": [1, -2, -1.2],
+            "rotation": [-10, 180, 0],
+            "scale": [0.1, 0.1, 0.05],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "gun",
+                "material": "gun"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          }
+
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [20,0,-5],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          }
+
+        ]
+      },
+      {
+        "position": [0, -4, 0],
+        "rotation": [-90, 0, 0],
+        "scale": [10, 10, 1],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "plane",
+            "material": "grass"
+          }
+        ]
+      },
+            {
+        "position": [0, -8, 0],
+        "rotation": [-90, 0, 0],
+        "scale": [100, 100, 1],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "plane",
+            "material": "water"
+          }
+        ]
+      },
+      {
+        "position": [0, 10, 0],
+        "rotation": [45, 45, 0],
+        "scale": [5, 5, 5],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "sphere",
+            "material": "moon"
+          },
+          {
+            "type": "Movement",
+            "angularVelocity": [0, 90, 0]
+          }
+        ]
+      }
+    ]
+  }
+}

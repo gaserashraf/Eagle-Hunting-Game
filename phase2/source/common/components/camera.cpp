@@ -38,7 +38,7 @@ namespace our {
         glm::mat4 view = glm::lookAt(
             glm::vec3(M * glm::vec4(0, 0, 0, 1)),
             glm::vec3(M * glm::vec4(0, 0, -1, 1)),
-            glm::vec3(M * glm::vec4(0, 1, 0, 1))                                                
+            glm::vec3(M * glm::vec4(0, 1, 0, 0))                                                
         );
         return view;
     }

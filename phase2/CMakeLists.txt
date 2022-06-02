@@ -82,6 +82,7 @@ set(COMMON_SOURCES
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp
         source/common/systems/free-camera-controller.hpp
+        source/common/systems/newCameraController.hpp
         source/common/systems/movement.hpp
 )
 
@@ -93,6 +94,7 @@ include_directories(
         vendor/glm
         vendor/imgui
         vendor/utils
+        vendor/freetype/include
 )
 
 
