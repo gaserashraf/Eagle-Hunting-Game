@@ -31,13 +31,13 @@ namespace our
                 // If the movement component exists
                 if(d){
                     ducks.push_back(entity);
-                    std::cout << "Duck found" << std::endl;
+                    //std::cout << "Duck found" << std::endl;
                 }
                 CameraComponent* c= entity->getComponent<CameraComponent>();
                 // If the movement component exists
                 if(c){
                     camera=entity;
-                    std::cout << "Camera found" << std::endl;
+                  //  std::cout << "Camera found" << std::endl;
                 }
             }
             auto cameraPos=camera->localTransform.position;
