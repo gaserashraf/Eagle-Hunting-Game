@@ -6,6 +6,8 @@
 #include "free-camera-controller.hpp"
 #include "movement.hpp"
 #include "duck.hpp"
+#include "light.hpp"
+#include "skyLight.hpp"
 
 namespace our {
 
@@ -24,7 +26,12 @@ namespace our {
             component = entity->addComponent<MovementComponent>();
         }else if (type == Duck::getID()) {
             component = entity->addComponent<Duck>();
+        }else if (type == Light::getID()) {
+            component = entity->addComponent<Light>();
+        }else if (type == skyLight::getID()) {
+            component = entity->addComponent<skyLight>();
         }
+
         if(component) component->deserialize(data);
     }
 

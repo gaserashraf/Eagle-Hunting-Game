@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 
+
 namespace our
 {
     
@@ -46,6 +47,9 @@ namespace our
         void initialize(glm::ivec2 windowSize, const nlohmann::json& config);
         // Clean up the renderer
         void destroy();
+
+        void handleLights(World* world, ShaderProgram* shader);
+
         // This function should be called every frame to draw the given world
         void render(World* world);
 

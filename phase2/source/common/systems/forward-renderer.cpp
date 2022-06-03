@@ -1,6 +1,9 @@
 #include "forward-renderer.hpp"
 #include "../mesh/mesh-utils.hpp"
 #include "../texture/texture-utils.hpp"
+#include "../components/light.hpp"
+#include "../components/skyLight.hpp"
+#include <glm/gtx/euler_angles.hpp>
 
 namespace our {
 
@@ -139,7 +142,59 @@ namespace our {
             delete postprocessMaterial;
         }
     }
-
+    void ForwardRenderer::handleLights(World* world, ShaderProgram* shader){
+        //first we get all light entities from the world
+        std::vector<Entity*> lights;
+        Entity * skyLit;
+        for(auto entity : world->getEntities()){
+            Light *light = entity->getComponent<Light>();
+            skyLight *sLight = entity->getComponent<skyLight>();
+            if(light){
+                lights.push_back(entity);
+            }
+            if(sLight){
+                skyLit = entity;
+            }
+        }
+        //then we send the lights to the shader
+        int numLights = (int)lights.size();
+        std::cout<<"numLights: "<<numLights<<std::endl;
+        shader->set("light_count", numLights);
+        for(int i = 0; i < numLights; i++){
+            Light *light = lights[i]->getComponent<Light>();
+            std::string lightString = "lights[" + std::to_string(i) + "]";
+            glm::vec3 rotation  = lights[i]->localTransform.rotation;
+            glm::vec3 position  = lights[i]->localTransform.position;
+            glm::vec3 direction = glm::yawPitchRoll(rotation[1], rotation[0], rotation[2])*glm::vec4(0,-1,0,0);
+            
+            shader->set(lightString + ".position",  position);
+            shader->set(lightString + ".direction", direction);
+            shader->set(lightString + ".type", light->lightType);
+            shader->set(lightString + ".diffuse", light->diffuse);
+            shader->set(lightString + ".specular",light->specular);
+            shader->set(lightString + ".attenuation",light->attenuation);
+            shader->set(lightString + ".cone_angles", glm::vec2(glm::radians(light->cone_angles.x), glm::radians(light->cone_angles.y)));
+            //debug
+            // std::cout<<"light found"<<std::endl;
+            // std::cout<<"light type: "<<light->lightType<<std::endl;
+            // std::cout<<"light position: "<<position[0]<<" " <<position[1]<<" "<<position[2]<<std::endl;
+            // std::cout<<"light direction: "<<direction[0]<<" " <<direction[1]<<" "<<direction[2]<<std::endl;
+            // std::cout<<"light diffuse: "<<light->diffuse[0]<<" " <<light->diffuse[1]<<" "<<light->diffuse[2]<<std::endl;
+            // std::cout<<"light specular: "<<light->specular[0]<<" " <<light->specular[1]<<" "<<light->specular[2]<<std::endl;
+            // std::cout<<"light attenuation: "<<light->attenuation[0]<<" " <<light->attenuation[1]<<" "<<light->attenuation[2]<<std::endl;
+            // std::cout<<"light cone angles: "<<light->cone_angles.x<<" " <<light->cone_angles.y<<std::endl;
+        }
+        skyLight *sLight = skyLit->getComponent<skyLight>();
+        if(sLight){
+            shader->set("sky.top", sLight->topLight);
+            shader->set("sky.middle", sLight->middleLight);
+            shader->set("sky.bottom", sLight->topLight);
+            std::cout<<"sky light found"<<std::endl;
+            std::cout<<"sky top: "<<sLight->topLight[0]<<" " <<sLight->topLight[1]<<" "<<sLight->topLight[2]<<std::endl;
+            std::cout<<"sky middle: "<<sLight->middleLight[0]<<" " <<sLight->middleLight[1]<<" "<<sLight->middleLight[2]<<std::endl;
+            std::cout<<"sky bottom: "<<sLight->bottomLight[0]<<" " <<sLight->bottomLight[1]<<" "<<sLight->bottomLight[2]<<std::endl;
+        }
+    }
     void ForwardRenderer::render(World* world){
         // First of all, we search for a camera and for all the mesh renderers
         CameraComponent* camera = nullptr;
@@ -204,8 +259,13 @@ namespace our {
         for(auto comm:opaqueCommands)
         {
             comm.material->setup();
-            ShaderProgram * shaderComm = comm.material->shader; // get the shader from current command
-            shaderComm->set("transform",VP*comm.localToWorld); // set the transform matrix 
+            ShaderProgram * shader = comm.material->shader; // get the shader from current command
+            glm::vec3 eye = glm::vec3(camera->getOwner()->getLocalToWorldMatrix()* glm::vec4 (0,0,0,1));
+            shader->set("VP", VP); 
+            shader->set("M", comm.localToWorld);
+            shader->set("M_IT", glm::transpose(glm::inverse(comm.localToWorld)));
+            shader->set("eye",eye);
+            handleLights(world, shader);
             comm.mesh->draw();
         }
         // If there is a sky material, draw the sky
