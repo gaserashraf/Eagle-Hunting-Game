@@ -199,13 +199,13 @@ namespace our
                     float t2 = t.y / (y1);
                     float t3 = t.z / (z1);
                     const float EPS = 2;
-                    // std::cout << t1 << " " << t2 << " " << t3 << "\n";
+                     std::cout << t1 << " " << t2 << " " << t3 << "\n";
                     if (abs(t1 - t3) < 0.5 && abs(t1 - t2) < 0.5 && abs(t2 - t3) < 0.5)
                     {
                         duck->getWorld()->markForRemoval(duck);
                         // std::cout << "hit duck " << deltaTime * 100.0 << "\n";
                     }
-                    // std::cout << "xDuck: " << positionDuck.x << " yDuck: " << positionDuck.y << " zDuck: " << positionDuck.z << "\n";
+                   // std::cout << "xDuck: " << positionDuck.x << " yDuck: " << positionDuck.y << " zDuck: " << positionDuck.z << "\n";
                 }
                 scope->getWorld()->deleteMarkedEntities();
                 // glm::vec3 scopePostion = scope->localTransform.position;

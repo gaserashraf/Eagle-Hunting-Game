@@ -22,16 +22,23 @@
         "textured": {
           "vs": "assets/shaders/textured.vert",
           "fs": "assets/shaders/textured.frag"
+        },
+        "lit": {
+          "vs": "assets/shaders/lit.vert",
+          "fs": "assets/shaders/lit.frag"
         }
       },
       "textures": {
         "moon": "assets/textures/moon.jpg",
-        "grass": "assets/textures/sand2.jpg",
+        "grass_albedo": "assets/textures/grass_albedo.jpg",
+        "grass_ambient": "assets/textures/grass_ambient_occlusion.png",
+        "grass_roughness": "assets/textures/grass_roughness.png",
         "wood": "assets/textures/wood.jpg",
         "duck": "assets/textures/eagle.jpg",
         "gun": "assets/textures/gun3.jpg",
         "water": "assets/textures/water.jpg",
-        "scope": "assets/textures/dark.png"
+        "scope": "assets/textures/dark.png",
+        "sand": "assets/textures/sand2.jpg"
       },
       "meshes": {
         "gun": "assets/models/gun.obj",
@@ -62,8 +69,8 @@
           "tint": [0.45, 0.4, 0.5, 1]
         },
         "grass": {
-          "type": "textured",
-          "shader": "textured",
+          "type": "lit",
+          "shader": "lit",
           "pipelineState": {
             "faceCulling": {
               "enabled": false
@@ -72,13 +79,13 @@
               "enabled": true
             }
           },
-          "tint": [1, 1, 1, 1],
-          "texture": "grass",
-          "sampler": "default"
+          "albedo": "grass_albedo",
+          "ambient_occlusion": "grass_ambient",
+          "roughness": "grass_roughness"
         },
         "water": {
-          "type": "textured",
-          "shader": "textured",
+          "type": "lit",
+          "shader": "lit",
           "pipelineState": {
             "faceCulling": {
               "enabled": false
@@ -87,13 +94,11 @@
               "enabled": true
             }
           },
-          "tint": [1, 1, 1, 1],
-          "texture": "water",
-          "sampler": "default"
+          "albedo": "water"
         },
         "duck": {
-          "type": "textured",
-          "shader": "textured",
+          "type": "lit",
+          "shader": "lit",
           "pipelineState": {
             "faceCulling": {
               "enabled": false
@@ -102,13 +107,11 @@
               "enabled": true
             }
           },
-          "tint": [1, 1, 1, 1],
-          "texture": "duck",
-          "sampler": "default"
+          "albedo": "duck" 
         },
         "gun": {
-          "type": "textured",
-          "shader": "textured",
+          "type": "lit",
+          "shader": "lit",
           "pipelineState": {
             "faceCulling": {
               "enabled": false
@@ -117,13 +120,11 @@
               "enabled": true
             }
           },
-          "tint": [1, 1, 1, 1],
-          "texture": "gun",
-          "sampler": "default"
+          "albedo": "gun"
         },
         "scope": {
-          "type": "textured",
-          "shader": "textured",
+          "type": "lit",
+          "shader": "lit",
           "pipelineState": {
             "faceCulling": {
               "enabled": false
@@ -137,8 +138,8 @@
           "sampler": "default"
         },
         "moon": {
-          "type": "textured",
-          "shader": "textured",
+          "type": "lit",
+          "shader": "lit",
           "pipelineState": {
             "faceCulling": {
               "enabled": false
@@ -147,9 +148,7 @@
               "enabled": true
             }
           },
-          "tint": [1, 1, 1, 1],
-          "texture": "moon",
-          "sampler": "default"
+          "albedo": "moon"
         }
       }
     },
@@ -213,7 +212,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [11,10,-15],
+        "position": [20,10,-20],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -229,7 +228,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-10,10,-10],
+        "position": [-10,10,-20],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -254,7 +253,7 @@
           }
         ]
       },
-            {
+      {
         "position": [0, -8, 0],
         "rotation": [-90, 0, 0],
         "scale": [100, 100, 1],
@@ -282,6 +281,29 @@
           }
         ]
       }
+      ,
+      {
+        "rotation": [ 0, 0, 60],
+        "components": 
+          [
+            {
+              "type": "Light",
+              "lightType": "directional",
+              "diffuse":  [ 1,  0.9,  0.7 ],
+              "specular": [ 1,  0.9,  0.7 ]
+            }
+          ]
+        },
+        {
+          "components": 
+            [
+              {
+                "type": "skyLight",
+                "topLight":    [ 0.1, 0.2, 0.5 ],
+                "middleLight": [ 0.1, 0.2, 0.3 ]
+              }
+            ]
+        }
     ]
   }
 }
