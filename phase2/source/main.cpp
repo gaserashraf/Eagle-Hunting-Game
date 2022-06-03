@@ -14,7 +14,7 @@
 #include "states/material-test-state.hpp"
 #include "states/entity-test-state.hpp"
 #include "states/renderer-test-state.hpp"
-
+#include "states/game-menu-state.hpp"
 int main(int argc, char** argv) {
     
     flags::args args(argc, argv); // Parse the command line arguments
@@ -49,11 +49,13 @@ int main(int argc, char** argv) {
     app.registerState<MaterialTestState>("material-test");
     app.registerState<EntityTestState>("entity-test");
     app.registerState<RendererTestState>("renderer-test");
+
+    app.registerState<GameMenustate>("game-menu-state");
     // Then choose the state to run based on the option "start-scene" in the config
     if(app_config.contains(std::string{"start-scene"})){
         app.changeState(app_config["start-scene"].get<std::string>());
     }
-
+    app.changeState("game-menu-state");
     // Finally run the application
     // Here, the application loop will run till the terminatio condition is statisfied
     return app.run(run_for_frames);

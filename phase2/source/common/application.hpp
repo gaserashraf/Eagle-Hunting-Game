@@ -4,7 +4,7 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 #include <imgui.h>
-
+#include <iostream>
 #include <string>
 #include <unordered_map>
 #include <type_traits>
@@ -102,6 +102,7 @@ namespace our {
             if(it != states.end()){
                 nextState = it->second;
             }
+           
         }
 
         // Class Getters.
@@ -118,6 +119,7 @@ namespace our {
         glm::ivec2 getFrameBufferSize() {
             glm::ivec2 size;
             glfwGetFramebufferSize(window, &(size.x), &(size.y));
+            //std::cout<<"doneF "<<size.x<<"\n";
             return size;
         }
 
