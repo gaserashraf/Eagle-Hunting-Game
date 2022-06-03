@@ -30,14 +30,16 @@
         "wood": "assets/textures/wood.jpg",
         "duck": "assets/textures/eagle.jpg",
         "gun": "assets/textures/gun3.jpg",
-        "water": "assets/textures/water.jpg"
+        "water": "assets/textures/water.jpg",
+        "scope": "assets/textures/dark.png"
       },
       "meshes": {
         "gun": "assets/models/gun.obj",
         "duck": "assets/models/eagle.obj",
         "plane": "assets/models/plane.obj",
         "sphere": "assets/models/sphere.obj",
-        "water": "assets/models/plane.obj"
+        "water": "assets/models/plane.obj",
+        "scope":"assets/models/scope.obj"
       },
       "samplers": {
         "default": {},
@@ -54,7 +56,7 @@
               "enabled": false
             },
             "depthTesting": {
-              "enabled": true
+              "enabled": false
             }
           },
           "tint": [0.45, 0.4, 0.5, 1]
@@ -119,6 +121,21 @@
           "texture": "gun",
           "sampler": "default"
         },
+        "scope": {
+          "type": "textured",
+          "shader": "textured",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "texture": "scope",
+          "sampler": "default"
+        },
         "moon": {
           "type": "textured",
           "shader": "textured",
@@ -151,12 +168,27 @@
           {
             "position": [1, -2, -1.2],
             "rotation": [-10, 180, 0],
-            "scale": [0.1, 0.1, 0.05],
+            "scale": [0.1, 0.1, 0.04],
             "components": [
               {
                 "type": "Mesh Renderer",
                 "mesh": "gun",
                 "material": "gun"
+              }
+            ]
+          },
+          {
+            "position": [0, 0, -2],
+            "rotation": [0, 0, 0],
+            "scale": [2.9, 2.9, 2.9],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "scope",
+                "material": "scope"
+              },
+              {
+                "type": "Scope"
               }
             ]
           }
@@ -165,6 +197,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
+        "position": [10,10,-20],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -180,7 +213,23 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [20,0,-5],
+        "position": [11,10,-15],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          }
+
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-10,10,-10],
         "components": [
           {
             "type": "Mesh Renderer",

@@ -2,6 +2,8 @@
 
 #include "../ecs/world.hpp"
 #include "../components/camera.hpp"
+#include "../components/scope.hpp"
+#include "../components/duck.hpp"
 #include "../components/free-camera-controller.hpp"
 
 #include "../application.hpp"
@@ -128,6 +130,89 @@ namespace our
                 position.x = -8;
             if (position.z < -8)
                 position.z = -8;
+
+            // player attack ducks
+
+            auto cameraPos = camera->getOwner()->localTransform.position;
+            Entity *scope;
+            // For each entity in the world
+            std::vector<Entity *> ducks;
+            for (auto entity : world->getEntities())
+            {
+                Scope *s = entity->getComponent<Scope>();
+                if (s)
+                {
+                    scope = entity;
+                }
+                Duck *d = entity->getComponent<Duck>();
+                // If the movement component exists
+                if (d)
+                {
+                    ducks.push_back(entity);
+                    // std::cout << "Duck found" << std::endl;
+                }
+            }
+            glm::mat4 matrixScope = scope->getLocalToWorldMatrix();
+            glm::vec3 frontScope = glm::vec3(matrixScope * glm::vec4(0, 0, -1, 0)),
+                      postionScope = glm::vec3(matrixScope * glm::vec4(0, 0, 0, 1));
+            // glm::vec3 postionScope = scope->localTransform.position;
+            if (app->getKeyboard().isPressed(GLFW_KEY_X))
+            {
+                /*
+                scope info from game.jsonc:
+                "position": [0, 0.2, -2],
+                "rotation": [90, 0, 0],
+                "scale": [2.9, 2.9, 2.9],
+                */
+
+                // check for every duck if this duck on the line
+                for (auto duck : ducks)
+                {
+
+                    glm::mat4 matrixDuck = duck->getLocalToWorldMatrix();
+                    glm::vec3 positionDuck = glm::vec3(matrixDuck * glm::vec4(0, 0, 0, 1));
+
+                    // first get the equ of the line
+                    /*
+                    x0:(0,0,0), x1=(positionDuck)
+                    x(t) = x0 + t(x1 - x0)
+                    y(t) = y0 + t(y1 - y0)
+                    z(t) = z0 + t(z1 - z0)
+                    t = (x - x0)/(x1-x0)
+
+                    if ( (y0 + t(y1-y0) == y) and (z0 + t(z1-z0) == z) ) then
+                    ---> we are in the line
+                    */
+                    float x0 = postionScope.x;
+                    float y0 = postionScope.y;
+                    float z0 = postionScope.z;
+
+                    float x1 = frontScope.x;
+                    float y1 = frontScope.y;
+                    float z1 = frontScope.z;
+
+                    float x = positionDuck.x;
+                    float y = positionDuck.y;
+                    float z = positionDuck.z;
+                    glm::vec3 t = positionDuck - postionScope;
+                    float t1 = t.x / (x1);
+                    float t2 = t.y / (y1);
+                    float t3 = t.z / (z1);
+                    const float EPS = 2;
+                    // std::cout << t1 << " " << t2 << " " << t3 << "\n";
+                    if (abs(t1 - t3) < 0.5 && abs(t1 - t2) < 0.5 && abs(t2 - t3) < 0.5)
+                    {
+                        duck->getWorld()->markForRemoval(duck);
+                        // std::cout << "hit duck " << deltaTime * 100.0 << "\n";
+                    }
+                    // std::cout << "xDuck: " << positionDuck.x << " yDuck: " << positionDuck.y << " zDuck: " << positionDuck.z << "\n";
+                }
+                scope->getWorld()->deleteMarkedEntities();
+                // glm::vec3 scopePostion = scope->localTransform.position;
+                // std::cout << "xFront: " << frontScope.x << " yFront: " << frontScope.y << " zFront: " << frontScope.z << "\n";
+                // std::cout << "x: " << postionScope.x << " y: " << postionScope.y << " z: " << postionScope.z << "\n";
+                // std::cout << "xCam: " << front.x << " yCam: " << front.y << " zCam: " << front.z << "\n";
+            }
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked

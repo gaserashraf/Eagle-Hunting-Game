@@ -6,6 +6,7 @@
 #include "free-camera-controller.hpp"
 #include "movement.hpp"
 #include "duck.hpp"
+#include "scope.hpp"
 
 namespace our {
 
@@ -24,6 +25,8 @@ namespace our {
             component = entity->addComponent<MovementComponent>();
         }else if (type == Duck::getID()) {
             component = entity->addComponent<Duck>();
+        }else if (type == Scope::getID()) {
+            component = entity->addComponent<Scope>();
         }
         if(component) component->deserialize(data);
     }

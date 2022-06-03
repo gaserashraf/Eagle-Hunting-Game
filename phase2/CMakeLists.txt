@@ -71,6 +71,8 @@ set(COMMON_SOURCES
 
         source/common/components/camera.hpp
         source/common/components/camera.cpp
+        source/common/components/duck.hpp
+        source/common/components/Scope.hpp
         source/common/components/mesh-renderer.hpp
         source/common/components/mesh-renderer.cpp
         source/common/components/free-camera-controller.hpp
@@ -84,6 +86,8 @@ set(COMMON_SOURCES
         source/common/systems/free-camera-controller.hpp
         source/common/systems/newCameraController.hpp
         source/common/systems/movement.hpp
+        source/common/systems/duck-controller.hpp
+        source/common/systems/scope-controller.hpp
 )
 
 # Define the directories in which to search for the included headers
