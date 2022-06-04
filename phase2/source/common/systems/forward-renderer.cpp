@@ -7,6 +7,11 @@
 
 namespace our {
 
+ struct {
+        glm::vec3 fog_color = {0.82,0.82 , 0.82};
+        float fog_power = 100.0f;
+        float fog_distance = 2.0f;
+    } fog{};
     void ForwardRenderer::initialize(glm::ivec2 windowSize, const nlohmann::json& config){
         // First, we store the window size for later use
         this->windowSize = windowSize;
@@ -314,12 +319,19 @@ namespace our {
 
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
-            //TODO: (Req 10) Return to the default framebuffer
+             //TODO: (Req 10) Return to the default framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             //TODO: (Req 10) Setup the postprocess material and draw the fullscreen triangle
-            postprocessMaterial->setup();
+            std::cout<<"I am here "<<std::endl ; 
+            postprocessMaterial->setup(); 
+            postprocessMaterial->shader->set("inverse_projection",glm::inverse(camera->getProjectionMatrix(windowSize)));
+            postprocessMaterial->shader->set("fog_color", fog.fog_color);
+            postprocessMaterial->shader->set("fog_power", fog.fog_power);
+            postprocessMaterial->shader->set("fog_exponent", 1.0f / fog.fog_distance);
+                
             glBindVertexArray(postProcessVertexArray);
-            glDrawArrays(GL_TRIANGLES,0,3);            
+            glDrawArrays(GL_TRIANGLES,0,3); 
+     
         }
     }
 
