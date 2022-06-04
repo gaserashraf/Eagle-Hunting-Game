@@ -5,7 +5,6 @@
 #include "../components/scope.hpp"
 #include "../components/duck.hpp"
 #include "../components/free-camera-controller.hpp"
-
 #include "../application.hpp"
 
 #include <glm/glm.hpp>
@@ -24,7 +23,11 @@ namespace our
         Application *app;          // The application in which the state runs
         bool mouse_locked = false; // Is the mouse locked
 
+        const int winCnt = 5;
+
     public:
+        int cntDucks = 0;
+        
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application *app)
         {
@@ -32,7 +35,7 @@ namespace our
         }
 
         // This should be called every frame to update all entities containing a FreeCameraControllerComponent
-        void update(World *world, float deltaTime)
+        bool update(World *world, float deltaTime)
         {
             // First of all, we search for an entity containing both a CameraComponent and a FreeCameraControllerComponent
             // As soon as we find one, we break
@@ -47,7 +50,7 @@ namespace our
             }
             // If there is no entity with both a CameraComponent and a FreeCameraControllerComponent, we can do nothing so we return
             if (!(camera && controller))
-                return;
+                return 0;
             // Get the entity that we found via getOwner of camera (we could use controller->getOwner())
             Entity *entity = camera->getOwner();
 
@@ -118,7 +121,7 @@ namespace our
             if (app->getKeyboard().isPressed(GLFW_KEY_ESCAPE))
             {
                 app->changeState("game-menu-state");
-                return;
+                return 0;
             }
 
             position.y = 0;
@@ -199,20 +202,20 @@ namespace our
                     float t2 = t.y / (y1);
                     float t3 = t.z / (z1);
                     const float EPS = 2;
-                     std::cout << t1 << " " << t2 << " " << t3 << "\n";
+                    std::cout << t1 << " " << t2 << " " << t3 << "\n";
                     if (abs(t1 - t3) < 0.5 && abs(t1 - t2) < 0.5 && abs(t2 - t3) < 0.5)
                     {
+
+                        cntDucks++;
                         duck->getWorld()->markForRemoval(duck);
                         // std::cout << "hit duck " << deltaTime * 100.0 << "\n";
                     }
-                   // std::cout << "xDuck: " << positionDuck.x << " yDuck: " << positionDuck.y << " zDuck: " << positionDuck.z << "\n";
+                    scope->getWorld()->deleteMarkedEntities();
+                    if (cntDucks >= winCnt)
+                        return 1;
                 }
-                scope->getWorld()->deleteMarkedEntities();
-                // glm::vec3 scopePostion = scope->localTransform.position;
-                // std::cout << "xFront: " << frontScope.x << " yFront: " << frontScope.y << " zFront: " << frontScope.z << "\n";
-                // std::cout << "x: " << postionScope.x << " y: " << postionScope.y << " z: " << postionScope.z << "\n";
-                // std::cout << "xCam: " << front.x << " yCam: " << front.y << " zCam: " << front.z << "\n";
             }
+            return 0;
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked
