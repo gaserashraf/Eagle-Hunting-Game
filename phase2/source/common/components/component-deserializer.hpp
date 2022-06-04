@@ -9,7 +9,8 @@
 #include "scope.hpp"
 #include "light.hpp"
 #include "skyLight.hpp"
-
+#include "player.hpp"
+#include "collision.hpp"
 namespace our {
 
     // Given a json object, this function picks and creates a component in the given entity
@@ -33,6 +34,10 @@ namespace our {
             component = entity->addComponent<Light>();
         }else if (type == skyLight::getID()) {
             component = entity->addComponent<skyLight>();
+        }else if (type == Player::getID()) {
+            component = entity->addComponent<Player>();
+        }else if (type == Collision::getID()) {
+            component = entity->addComponent<Collision>();
         }
 
         if(component) component->deserialize(data);

@@ -8,6 +8,7 @@
 #include <systems/movement.hpp>
 #include <systems/duck-controller.hpp>
 #include <systems/scope-controller.hpp>
+#include <systems/collision-controller.hpp>
 #include <asset-loader.hpp>
 
 // This state shows how to use the ECS framework and deserialization.
@@ -20,7 +21,9 @@ class Playstate : public our::State
     our::MovementSystem movementSystem;
     our::DuckController duckController;
     our::ScopeController scopeController;
+    our::CollisionController collisionController;
     bool startGame = false;
+    bool gameover = false;
     void onInitialize() override
     {
         if (startGame)
@@ -48,12 +51,14 @@ class Playstate : public our::State
     void onDraw(double deltaTime) override
     {
         // Here, we just run a bunch of systems to control the world logic
-        movementSystem.update(&world, (float)deltaTime);
-        cameraController.update(&world, (float)deltaTime);
-        duckController.update(&world, (float)deltaTime);
-        scopeController.update(&world, (float)deltaTime);
-        // And finally we use the renderer system to draw the scene
-        renderer.render(&world);
+        if(!gameover){
+            movementSystem.update(&world, (float)deltaTime);
+            cameraController.update(&world, (float)deltaTime);
+            duckController.update(&world, (float)deltaTime);
+            scopeController.update(&world, (float)deltaTime);
+            gameover = collisionController.update(&world, (float)deltaTime);
+            renderer.render(&world);
+        }
     }
 
     void onDestroy() override

@@ -83,6 +83,10 @@ set(COMMON_SOURCES
         source/common/components/light.cpp
         source/common/components/skyLight.hpp
         source/common/components/skyLight.cpp
+        source/common/components/player.hpp
+        source/common/components/player.cpp
+        source/common/components/collision.hpp
+        source/common/components/collision.cpp
         source/common/components/component-deserializer.hpp
 
         source/common/systems/forward-renderer.hpp
@@ -91,6 +95,7 @@ set(COMMON_SOURCES
         source/common/systems/movement.hpp
         source/common/systems/duck-controller.hpp
         source/common/systems/scope-controller.hpp
+        source/common/systems/collision-controller.hpp
 )
 
 # Define the directories in which to search for the included headers

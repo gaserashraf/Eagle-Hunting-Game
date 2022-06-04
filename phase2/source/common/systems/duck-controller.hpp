@@ -34,7 +34,6 @@ namespace our
                     //std::cout << "Duck found" << std::endl;
                 }
                 CameraComponent* c= entity->getComponent<CameraComponent>();
-                // If the movement component exists
                 if(c){
                     camera=entity;
                   //  std::cout << "Camera found" << std::endl;
