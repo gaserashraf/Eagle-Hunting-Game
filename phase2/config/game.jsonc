@@ -221,7 +221,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [30, 10, -20],
+        "position": [18, 11, -30],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -241,7 +241,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [30, 20, -20],
+        "position": [26, 16, -40],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -261,7 +261,127 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [20, 10, -20],
+        "position": [34, 16, -50],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [42, 12, -60],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [50, 12, -70],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [58, 13, -80],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [66, 13, -90],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [74, 12, -100],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [82, 12, -110],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -282,6 +402,186 @@
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
         "position": [-10, 10, -20],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-18, 10, -30],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-26, 16, -40],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-34, 16, -50],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-42, 14, -60],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-50, 14, -70],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-58, 12, -80],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-66, 12, -90],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-74, 13, -100],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "duck",
+            "material": "duck"
+          },
+          {
+            "type": "Duck"
+          },
+          {
+            "type": "Collision",
+            "radius": 1,
+            "effect": 20
+          }
+        ]
+      },
+      {
+        "rotation": [30, 0, 0],
+        "scale": [0.1, 0.1, 0.1],
+        "position": [-82, 15, -120],
         "components": [
           {
             "type": "Mesh Renderer",
