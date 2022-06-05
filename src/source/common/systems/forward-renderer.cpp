@@ -3,15 +3,13 @@
 #include "../texture/texture-utils.hpp"
 #include "../components/light.hpp"
 #include "../components/skyLight.hpp"
+#include "../components/fog.hpp"
 #include <glm/gtx/euler_angles.hpp>
+
 
 namespace our {
 
- struct {
-        glm::vec3 fog_color = {0.86274,0.86274 , 0.86274};
-        float fog_power = 45.0f;
-        float fog_distance = 1.5f;
-    } fog{};
+
     void ForwardRenderer::initialize(glm::ivec2 windowSize, const nlohmann::json& config){
         // First, we store the window size for later use
         this->windowSize = windowSize;
@@ -170,10 +168,10 @@ namespace our {
             std::string lightString = "lights[" + std::to_string(i) + "]";
             glm::vec3 rotation  = lights[i]->localTransform.rotation;
             glm::vec3 position  = lights[i]->localTransform.position;
-            glm::vec3 direction = glm::yawPitchRoll(rotation[1], rotation[0], rotation[2])*glm::vec4(0,-1,0,0);
-            
+            //glm::vec3 direction = glm::yawPitchRoll(rotation[1], rotation[0], rotation[2])*glm::vec4(0,-1,0,0);
+            //glm ::vec3 direction = glm::vec3(0,0,-1);
             shader->set(lightString + ".position",  position);
-            shader->set(lightString + ".direction", direction);
+            shader->set(lightString + ".direction", rotation);
             shader->set(lightString + ".type", light->lightType);
             shader->set(lightString + ".diffuse", light->diffuse);
             shader->set(lightString + ".specular",light->specular);
@@ -194,10 +192,6 @@ namespace our {
             shader->set("sky.top", sLight->topLight);
             shader->set("sky.middle", sLight->middleLight);
             shader->set("sky.bottom", sLight->topLight);
-            //std::cout<<"sky light found"<<std::endl;
-            //std::cout<<"sky top: "<<sLight->topLight[0]<<" " <<sLight->topLight[1]<<" "<<sLight->topLight[2]<<std::endl;
-            //std::cout<<"sky middle: "<<sLight->middleLight[0]<<" " <<sLight->middleLight[1]<<" "<<sLight->middleLight[2]<<std::endl;
-            //std::cout<<"sky bottom: "<<sLight->bottomLight[0]<<" " <<sLight->bottomLight[1]<<" "<<sLight->bottomLight[2]<<std::endl;
         }
     }
     void ForwardRenderer::render(World* world){
@@ -312,22 +306,33 @@ namespace our {
         for(auto comm:transparentCommands)
         {
             comm.material->setup();
-            ShaderProgram * shaderComm = comm.material->shader;// get the shader from current command
-            shaderComm->set("transform",VP*comm.localToWorld);// set the transform matrix 
+            ShaderProgram * shader = comm.material->shader; // get the shader from current command
+            glm::vec3 eye = glm::vec3(camera->getOwner()->getLocalToWorldMatrix()* glm::vec4 (0,0,0,1));
+            shader->set("VP", VP); 
+            shader->set("M", comm.localToWorld);
+            shader->set("M_IT", glm::transpose(glm::inverse(comm.localToWorld)));
+            shader->set("eye",eye);
+            handleLights(world, shader);
             comm.mesh->draw();
         }
 
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
-             //TODO: (Req 10) Return to the default framebuffer
+            Entity * fogEntity;
+            for(auto entity:world->getEntities()){
+                Fog * fog = entity->getComponent<Fog>();
+                if(fog){
+                    fogEntity = entity;
+                    break;
+                }
+            }
+            Fog * fog = fogEntity->getComponent<Fog>();
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-            //TODO: (Req 10) Setup the postprocess material and draw the fullscreen triangle
-            std::cout<<"I am here "<<std::endl ; 
             postprocessMaterial->setup(); 
             postprocessMaterial->shader->set("inverse_projection",glm::inverse(camera->getProjectionMatrix(windowSize)));
-            postprocessMaterial->shader->set("fog_color", fog.fog_color);
-            postprocessMaterial->shader->set("fog_power", fog.fog_power);
-            postprocessMaterial->shader->set("fog_exponent", 1.0f / fog.fog_distance);
+            postprocessMaterial->shader->set("fog_color", fog->fog_color);
+            postprocessMaterial->shader->set("fog_power", fog->fog_power);
+            postprocessMaterial->shader->set("fog_exponent", 1.0f / fog->fog_distance);
                 
             glBindVertexArray(postProcessVertexArray);
             glDrawArrays(GL_TRIANGLES,0,3); 

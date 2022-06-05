@@ -24,11 +24,10 @@ class Playstate : public our::State
     our::DuckController duckController;
     our::ScopeController scopeController;
     our::CollisionController collisionController;
+    our::Player player;
     bool startGame = false;
     bool gameover = false;
     bool winGame = false;
-    our::Player *player;
-    our::Entity *Eplayer;
     void onInitialize() override
     {
         if (startGame)
@@ -51,18 +50,6 @@ class Playstate : public our::State
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
 
-        // For each entity in the world
-        // Entity *pplayer;
-        /*for (auto entity : world->getEntities())
-        {
-            Player *p = entity->getComponent<Player>();
-            if (p)
-            {
-                player = entity;
-            }
-        }*/
-        /* Player *playerComponent = player->getComponent<Player>();
-         player = playerComponent;*/
         startGame = true;
     }
     void onImmediateGui() override
@@ -74,6 +61,7 @@ class Playstate : public our::State
 
         int cnt = cameraController.cntDucks;
         int health = collisionController.health;
+
         std::string tmp = "score : " + std::to_string(cnt * 10);
         char *char_arr;
 

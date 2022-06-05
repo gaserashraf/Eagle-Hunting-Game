@@ -43,8 +43,9 @@ namespace our
             for(auto duck :ducks){
                 auto duckPos=duck->localTransform.position;
                 auto dir=glm::normalize(cameraPos-duckPos);
+                Duck *d=duck->getComponent<Duck>();
 
-                duck->localTransform.position+=deltaTime*dir;
+                duck->localTransform.position+=deltaTime*dir*(float)d->speed;
                 duck->localTransform.rotation= glm::vec3(glm::rotate(glm::mat4(1.0f),glm::atan(dir.z,dir.x),glm::vec3(0,-1,0))*glm::vec4(0,0,-1,0));
             }
         }
