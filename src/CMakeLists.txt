@@ -72,6 +72,7 @@ set(COMMON_SOURCES
         source/common/components/camera.hpp
         source/common/components/camera.cpp
         source/common/components/duck.hpp
+        source/common/components/duck.cpp
         source/common/components/scope.hpp
         source/common/components/mesh-renderer.hpp
         source/common/components/mesh-renderer.cpp
@@ -87,6 +88,8 @@ set(COMMON_SOURCES
         source/common/components/player.cpp
         source/common/components/collision.hpp
         source/common/components/collision.cpp
+        source/common/components/fog.hpp
+        source/common/components/fog.cpp
         source/common/components/component-deserializer.hpp
 
         source/common/systems/forward-renderer.hpp

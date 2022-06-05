@@ -21,7 +21,7 @@ class GameMenustate : public our::State
     void onImmediateGui() override
     {
 
-        ImGui::Begin("Welcome to Duck hunting game!");        // title
+        ImGui::Begin("Welcome to Eagle hunting game!");        // title
         ImGui::SetWindowSize(ImVec2((float)600, (float)400)); // size of the imgui
         ImGui::SetWindowFontScale(3.0f);                      // make the font big
 

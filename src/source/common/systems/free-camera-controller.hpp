@@ -23,7 +23,7 @@ namespace our
         Application *app;          // The application in which the state runs
         bool mouse_locked = false; // Is the mouse locked
 
-        const int winCnt = 5;
+        const int winCnt = 10;
 
     public:
         int cntDucks = 0;

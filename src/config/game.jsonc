@@ -55,19 +55,6 @@
         }
       },
       "materials": {
-        "metal": {
-          "type": "tinted",
-          "shader": "tinted",
-          "pipelineState": {
-            "faceCulling": {
-              "enabled": false
-            },
-            "depthTesting": {
-              "enabled": false
-            }
-          },
-          "tint": [0.45, 0.4, 0.5, 1]
-        },
         "grass": {
           "type": "lit",
           "shader": "lit",
@@ -209,7 +196,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -229,7 +217,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -249,7 +238,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -269,7 +259,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -289,7 +280,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -309,7 +301,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -329,7 +322,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -349,7 +343,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -369,7 +364,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -381,7 +377,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [82, 12, -110],
+        "position": [90, 12, -100],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -389,7 +385,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -409,7 +406,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -421,7 +419,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-18, 10, -30],
+        "position": [-20, 10, -30],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -429,7 +427,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -441,7 +440,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-26, 16, -40],
+        "position": [-30, 16, -40],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -449,7 +448,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -461,7 +461,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-34, 16, -50],
+        "position": [-40, 16, -50],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -469,7 +469,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -481,7 +482,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-42, 14, -60],
+        "position": [-50, 14, -65],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -489,7 +490,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -501,7 +503,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-50, 14, -70],
+        "position": [-60, 14, -75],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -509,7 +511,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -521,7 +524,7 @@
       {
         "rotation": [30, 0, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-58, 12, -80],
+        "position": [-70, 12, -80],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -529,7 +532,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -539,9 +543,9 @@
         ]
       },
       {
-        "rotation": [30, 0, 0],
+        "rotation": [30, 10, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-66, 12, -90],
+        "position": [-80, 12, -90],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -549,7 +553,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -559,9 +564,9 @@
         ]
       },
       {
-        "rotation": [30, 0, 0],
+        "rotation": [30, 10, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-74, 13, -100],
+        "position": [-90, 13, -100],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -569,7 +574,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -579,9 +585,9 @@
         ]
       },
       {
-        "rotation": [30, 0, 0],
+        "rotation": [30, 10, 0],
         "scale": [0.1, 0.1, 0.1],
-        "position": [-82, 15, -120],
+        "position": [-100, 18, -100],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -589,7 +595,8 @@
             "material": "duck"
           },
           {
-            "type": "Duck"
+            "type": "Duck",
+            "speed": 1
           },
           {
             "type": "Collision",
@@ -601,7 +608,7 @@
       {
         "position": [0, -4, 0],
         "rotation": [-90, 0, 0],
-        "scale": [10, 10, 1],
+        "scale": [10, 14, 1],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -639,7 +646,7 @@
         ]
       },
       {
-        "rotation": [0, 0, 60],
+        "rotation": [1, -1, -1],
         "components": [
           {
             "type": "Light",
@@ -655,6 +662,16 @@
             "type": "skyLight",
             "topLight": [0.1, 0.2, 0.5],
             "middleLight": [0.1, 0.2, 0.3]
+          }
+        ]
+      },
+      {
+        "components": [
+          {
+            "type": "Fog",
+            "fog_color":[0.86274,0.86274,0.86274],
+            "fog_power": 0,
+            "fog_distance": 1.5
           }
         ]
       }
