@@ -169,7 +169,6 @@ namespace our {
             glm::vec3 rotation  = lights[i]->localTransform.rotation;
             glm::vec3 position  = lights[i]->localTransform.position;
             //glm::vec3 direction = glm::yawPitchRoll(rotation[1], rotation[0], rotation[2])*glm::vec4(0,-1,0,0);
-            //glm ::vec3 direction = glm::vec3(0,0,-1);
             shader->set(lightString + ".position",  position);
             shader->set(lightString + ".direction", rotation);
             shader->set(lightString + ".type", light->lightType);
