@@ -8,9 +8,9 @@
 namespace our {
 
  struct {
-        glm::vec3 fog_color = {0.82,0.82 , 0.82};
-        float fog_power = 100.0f;
-        float fog_distance = 2.0f;
+        glm::vec3 fog_color = {0.86274,0.86274 , 0.86274};
+        float fog_power = 45.0f;
+        float fog_distance = 1.5f;
     } fog{};
     void ForwardRenderer::initialize(glm::ivec2 windowSize, const nlohmann::json& config){
         // First, we store the window size for later use
