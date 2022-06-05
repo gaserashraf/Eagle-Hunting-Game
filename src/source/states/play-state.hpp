@@ -90,10 +90,10 @@ class Playstate : public our::State
     void onDraw(double deltaTime) override
     {
         // Here, we just run a bunch of systems to control the world logic
-        if (!gameover)
+        if (!gameover && !winGame)
         {
             movementSystem.update(&world, (float)deltaTime);
-            winGame |= cameraController.update(&world, (float)deltaTime);
+            winGame = cameraController.update(&world, (float)deltaTime);
             duckController.update(&world, (float)deltaTime);
             scopeController.update(&world, (float)deltaTime);
             gameover = collisionController.update(&world, (float)deltaTime);
@@ -101,12 +101,11 @@ class Playstate : public our::State
         }
         else
         {
-
-            getApp()->changeState("game-over-state");
-        }
-        if (winGame)
-        {
-            getApp()->changeState("win-state");
+            cameraController.exit();
+            if(gameover)
+                getApp()->changeState("game-over-state");
+            else
+                getApp()->changeState("win-state");
         }
     }
 

@@ -60,11 +60,6 @@ class GameMenustate : public our::State
 
     void onDestroy() override
     {
-        // Don't forget to destroy the renderer
-        //  renderer.destroy();
-        // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
-        // cameraController.exit();
-        // and we delete all the loaded assets to free memory on the RAM and the VRAM
-      //  our::clearAllAssets();
+
     }
 };
