@@ -25,7 +25,7 @@
 - [Screenshots](#Screenshots)
 
 ## 📙 About <a name = "about"></a>
-
+Eagle Hunting is a 3d game where you have a simple goal : kill the eagles before they kill you !
 
 ## 🏁 Get Started <a name = "Install"></a>
 1. **Clone the repository**
@@ -73,10 +73,6 @@ git clone https://github.com/gaserashraf/Eagle-Hunting-Game.git
    <img width=100% src="screenshots/ingame.png" alt="logo"></a>
    <hr>
 </div>
-
-## 🎥 Demo 
-[![Watch the video]](screenshots/gameplay.gif)
-
 
 ### ✨ Contributors
 <table>
