@@ -59,17 +59,17 @@ git clone https://github.com/gaserashraf/Eagle-Hunting-Game.git
 - Use *ESC* to pause the game.
 
 ## 🎥 Demo<a name = "demo"></a>
-<div name = "demo" align="center" width=1189>
-  
-![GIFDemo](screenshots/gameplay.wmv)
-  
-</div>
+
+[Demo video](https://drive.google.com/drive/u/0/folders/1x10qtq6kFqJL2fCT-Ny88-ja2iHGbB2C)
 
 ## 📷 Screenshots 
 
 <div name="Screenshots" align="center">
    <img width=100% src="screenshots/menu.png" alt="logo"></a>
    <hr>
+    <img width=100% src="screenshots/ingame1.jpeg" alt="logo"></a>
+    <hr>
+    Fog effect
    <img width=100% src="screenshots/ingame.png" alt="logo"></a>
    <hr>
 </div>
