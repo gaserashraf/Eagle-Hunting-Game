@@ -12,11 +12,12 @@ namespace our {
     // For a more complex example of how to use the ECS framework, see "free-camera-controller.hpp"
     class Duck : public Component {
     public:
-        // The ID of this component type is "Movement"
+
+        int speed = 1; 
+
         static std::string getID() { return "Duck"; }
 
-        // Reads linearVelocity & angularVelocity from the given json object
-        void deserialize(const nlohmann::json& data){}
+        void deserialize(const nlohmann::json& data) override;
     };
 
 }
