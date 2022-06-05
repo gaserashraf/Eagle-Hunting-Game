@@ -32,24 +32,51 @@
 ```
 git clone https://github.com/gaserashraf/Eagle-Hunting-Game.git
 ```
+2. **Install Visual Studio Code**
+
+
+3. **Open the folder in Visual Studio Code**
+
+
+4. **Build the project**
+
+
+4. **Open a terminal (Terminal > New Terminal)**
+
+
+5. **Run this Command**
+```
+.\bin\GAME_APPLICATION.exe -c="config\test_app.jsonc"
+```
 ## 💻 Built Using <a name = "tech"></a>
 - [C++]()
 - [OpenGL](https://www.opengl.org/)
-- [glfw 3.3](https://github.com/glfw/glfw)
-- [glad 2](https://github.com/Dav1dde/glad/tree/glad2)
-- [glm 0.9.9.8](https://github.com/g-truc/glm)
-- [imgui v1.78](https://github.com/ocornut/imgui)
-- [json 3.9.1](https://github.com/nlohmann/json)
-- [flags](https://github.com/sailormoon/flags)
-- [stb](https://github.com/nothings/stb)
-- [tinyobjloader v1.0.6](https://github.com/tinyobjloader/tinyobjloader)
-- [tinygltf v2.4.0](https://github.com/syoyo/tinygltf)
+## 🎮How to play<a name = "play"></a>
+- Use *A* to move left.
+- Use *D* to move right.
+- Use *W* to move front.
+- Use *S* to move back.
+- Use *ESC* to pause the game.
+
+## 🎥 Demo<a name = "demo"></a>
+<div name = "demo" align="center" width=1189>
+  
+![GIFDemo](screenshots/gameplay.wmv)
+  
+</div>
+
 ## 📷 Screenshots 
 
 <div name="Screenshots" align="center">
-   <img width=100% src="screenshots/1.PNG" alt="logo"></a>
+   <img width=100% src="screenshots/menu.png" alt="logo"></a>
+   <hr>
+   <img width=100% src="screenshots/ingame.png" alt="logo"></a>
    <hr>
 </div>
+
+## 🎥 Demo 
+[![Watch the video]](screenshots/gameplay.gif)
+
 
 ### ✨ Contributors
 <table>
