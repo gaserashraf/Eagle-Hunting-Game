@@ -60,7 +60,7 @@ git clone https://github.com/gaserashraf/Eagle-Hunting-Game.git
 
 ## 🎥 Demo<a name = "demo"></a>
 
-[Demo video](https://drive.google.com/drive/u/0/folders/1x10qtq6kFqJL2fCT-Ny88-ja2iHGbB2C)
+[Demo video](https://youtu.be/tx8YQ-WH6HU)
 
 ## 📷 Screenshots 
 
