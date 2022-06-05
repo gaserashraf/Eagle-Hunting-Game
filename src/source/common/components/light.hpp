@@ -16,7 +16,7 @@ namespace our{
             glm::vec3 diffuse=glm::vec3(0.0,0.0,0.0);
             glm::vec3 specular = glm::vec3(0.0, 0.0, 0.0);
             glm::vec3 attenuation = glm::vec3(1.0,0.0,0.0);
-            glm::vec2 cone_angles = glm::vec2(45, 90);
+            glm::vec2 cone_angles = glm::vec2(10, 11);
 
             static std::string getID() { return "Light"; }
           
